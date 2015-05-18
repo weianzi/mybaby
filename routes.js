@@ -3,12 +3,14 @@
  */
 
 var Index = require("./app/controllers/index");
-
+var Detail = require("./app/controllers/detail");
 
 module.exports = function (app) {
 
-    //index
+    //Index
     app.get("/", Index.index);
 
+    //detail
+    app.get("/detail/:id", Detail.detail);
 
 }

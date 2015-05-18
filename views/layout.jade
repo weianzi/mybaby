@@ -7,13 +7,13 @@ html
         meta(content="black" name="apple-mobile-web-app-status-bar-style")
         meta(content="telephone=no" name="format-detection")
         title #{title}
-        link(rel="stylesheet" href="css/main.css")
-        script(src="libs/zepto.min.js")
-        script(src="libs/fx.js")
-        script(src="libs/main.js")
+        link(rel="stylesheet" href="/css/main.css")
+        script(src="/libs/zepto.min.js")
+        script(src="/libs/fx.js")
+        script(src="/libs/main.js")
     body
-        include header
         include user
         include menu
+        include header
         block content
         include footer
