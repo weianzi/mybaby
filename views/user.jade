@@ -1,0 +1,30 @@
+#user
+    .account
+        .login_b_t
+            .pd10
+                .fl 还没有账号
+                    a#reg_now(href="" onclick="return false;") 立即注册
+                .fr
+                    a(href="") 忘记密码?
+                .clear
+
+    .pd10
+        form(method="post" action="")
+            .login_b_i
+                .login_input
+                    .login_user
+                        input(type="text" name="email" placeholder="邮箱/帐号")
+                        i
+                    .login_password
+                        input(type="password" name="password" placeholder="密码")
+                        i
+            a.login_submit 登录
+
+        .login_quick
+            p 用第三方帐号直接登录
+            a#weibo_app(href="#")
+                span
+                    i 微博帐号登录
+            a#qq_connect(href="#")
+                span
+                    i QQ&nbsp;&nbsp;帐号登录

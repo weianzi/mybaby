@@ -1,14 +1,7 @@
-	
 function index(req, res) {
-	        res.render("index", {
-	            title: "mybaby首页"
-	        })
-}
-
-
-fucntion search(){
-
+    res.render("index", {
+        title: "mybaby首页"
+    })
 }
 
 exports.index = index;
-exports.search = search;
