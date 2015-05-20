@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    #container
+        table(width="100%")
+            tr
+                th 主题
+                th 录入时间
+                th 图片地址
+                th 视频地址
+                th 介绍
+                th 查看
+                th 编辑
+
+            each item in items
+                tr
+                    td #{item.title}
+                    td #{item.createdAt}
+                    td
+                        img(src="/#{item.img}")
+                    td
+                    td #{item.summary}
+                    td
+                        a(href="/detail/#{item._id}")查看
+                    td
+                        a(href="###") 修改
+                        a(href="###") 删除

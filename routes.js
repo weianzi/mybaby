@@ -4,6 +4,7 @@
 
 var Index = require("./app/controllers/index");
 var Detail = require("./app/controllers/detail");
+var AdminList = require("./app/controllers/admin-list");
 
 module.exports = function (app) {
 
@@ -13,4 +14,7 @@ module.exports = function (app) {
     //detail
     app.get("/detail/:id", Detail.detail);
 
-}
+    //admin list
+    app.get("/admin/list", AdminList.adminList);
+
+};

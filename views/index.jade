@@ -2,211 +2,42 @@ extends layout
 
 block content
     #container
-        #sort
-            table(width='100%', border='0', cellspacing='0')
-                tbody
-                    tr
-                        td.sort_left
-                            .sort_cate
-                                .sort_b
-                                    a(href='#/UEhtml/index.html#', onclick='return false;')
-                                        .sort_b_inner
-                                            i.cate_default
-                                            span 全部
-                                            .clear
-                        td
-                            .sort_sort
-                                .sort_b
-                                    a(href='#/UEhtml/index.html#', onclick='return false;')
-                                        .sort_b_inner
-                                            i.s.sort_re
-                                            span 最新推荐
-                                            .clear
-                        td.sort_right
-                            .sort_tag
-                                .sort_b
-                                    a(href='#/UEhtml/index.html#', onclick='return false;')
-                                        .sort_b_inner
-                                            i.cate_tag
-                                            span 版权
-                                            .clear
         #content
             #list
                 ul
-                    li
-                        .wrap
-                            a.alist(vhref='zhengwen.html')
-                                .list_litpic.fl
-                                    img(src='images/1421841277109.jpg')
-                                .list_info
-                                    h4 UEMO用户图片排序问题
-                                    h5
-                                        | by
-                                        span 经验分享
-                                        em (其他)
-                                    .list_info_i
-                                        dl.list_info_views
-                                            dt
-                                            dd 6907
+                    each item in items
+                        li
+                            .wrap
+                                a.alist(href='/detail/#{item._id}')
+                                    .list_litpic.fl
+                                        img(src='#{item.img}')
+                                    .list_info
+                                        h4 #{item.title}
+                                        h5
+                                            | by
+                                            span #{item.username}
+                                            em (#{item.createdAt})
+                                        .list_info_i
+                                            dl.list_info_views
+                                                dt
+                                                dd 6907
+                                                .clear
+                                            dl.list_info_comment
+                                                dt
+                                                dd 5
+                                                .clear
+                                            dl.list_info_like
+                                                dt
+                                                dd 8
+                                                .clear
                                             .clear
-                                        dl.list_info_comment
-                                            dt
-                                            dd 5
-                                            .clear
-                                        dl.list_info_like
-                                            dt
-                                            dd 8
-                                            .clear
-                                        .clear
-                                .clear
-                    li
-                        .wrap
-                            a.alist(vhref='zhengwen.html')
-                                .list_litpic.fl
-                                    img(src='images/1421838333851.jpg')
-                                .list_info
-                                    h4 动画写实场景
-                                    h5
-                                        | by
-                                        span 木白
-                                        em (其他)
-                                    .list_info_i
-                                        dl.list_info_views
-                                            dt
-                                            dd 186
-                                            .clear
-                                        dl.list_info_comment
-                                            dt
-                                            dd 0
-                                            .clear
-                                        dl.list_info_like
-                                            dt
-                                            dd 1
-                                            .clear
-                                        .clear
-                                .clear
-                    li
-                        .wrap
-                            a.alist(vhref='zhengwen.html')
-                                .list_litpic.fl
-                                    img(src='images/1421805669559.jpg')
-                                .list_info
-                                    h4 太白案例更新+ui页面
-                                    h5
-                                        | by
-                                        span u21
-                                        em (企业集团)
-                                    .list_info_i
-                                        dl.list_info_views
-                                            dt
-                                            dd 423
-                                            .clear
-                                        dl.list_info_comment
-                                            dt
-                                            dd 0
-                                            .clear
-                                        dl.list_info_like
-                                            dt
-                                            dd 1
-                                            .clear
-                                        .clear
-                                .clear
+                                    .clear
 
                 .list_loading
                     i
                     span 努力加载中...
         .push_msk
-        #sort_content
-            .asort
-                .hd
-                    .wrap
-                        .fl
-                            span 选择分类
-                            .clear
-                        .fr
-                        .clear
-                .ct(style='height: 603px;')
-                    .wrap
-                        ul.choose_cate
-                            li(c_data='0', style='font-weight:700;')
-                                i.s(style='background:none;width:0;margin-right:0;')
-                                span 全部行业
-                                i.e
-                            li(style='font-weight:700;', c_data='1')
-                                i.s(style='margin-right:0;background:none;width:0;')
-                                span 网页
-                                i.e
-                            li(c_data='2')
-                                i.s(style='background:none;width:10px;margin-right:0;')
-                                span 企业集团
-                                i.e
-                            li(c_data='25')
-                                i.s(style='background:none;width:10px;margin-right:0;')
-                                span 专题/Banner
-                                i.e
-                        .clear
-            .asort
-                .hd
-                    .wrap
-                        .fl
-                            span 选择排序
-                            .clear
-                        .fr
-                        .clear
-                .ct(style='height: 603px;')
-                    .wrap
-                        ul.choose_sort
-                            li.a_selected(s_data='rec')
-                                i.s.sort_re
-                                span 最新推荐
-                                i.e
-                            li(s_data='like')
-                                i.s.sort_recom
-                                span 最多喜欢
-                                i.e
-                            li(s_data='view')
-                                i.s.sort_fa
-                                span 最多浏览
-                                i.e
-                            li(s_data='comment')
-                                i.s.sort_vi
-                                span 最多评论
-                                i.e
-                            li(s_data='laster')
-                                i.s.sort_com
-                                span 最新发布
-                                i.e
-                        .clear
-            .asort
-                .hd
-                    .wrap
-                        .fl
-                            i
-                            span 版权
-                            .clear
-                        .fr
-                        .clear
-                .ct(style='height: 603px;')
-                    .wrap
-                        // <h4 class="cate_trade"><i></i><span>行业</span></h4>
-                        ul
-                            li(t_data='')
-                                i
-                                span 所有者
-                                i.e
-                            li(t_data='1')
-                                i
-                                span 原创
-                                i.e
-                            li(t_data='2')
-                                i
-                                span 转载
-                                i.e
-                        .clear
-        #newwrap_t.newwrap(style='width: 964px;')
-            .newwrap_msk
-            iframe#newwrap(frameborder='0', width='100%', height='100%', style='width: 964px;', src='', dataurl='#/UEhtml/index.html', datatitle='仿UEhtml 自适应手机触屏版HTML5手机网站模板')
-        #reg_index
+        //-#reg_index
             .reg_bar
                 .wrap
                     span.fl
