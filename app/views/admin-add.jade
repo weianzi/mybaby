@@ -1,0 +1,31 @@
+extends layout-admin
+
+block content
+  .container
+    .row
+
+        input(type="hidden", id="babyId" name="baby[_id]", value=baby._id)
+        .form-group
+          label.col-sm-2.control-label(for="inputTitle") 标题
+          .col-sm-10
+            input#inputTitle.form-control(type="text", name="baby[title]", value=baby.title) 
+        .form-group
+          label.col-sm-2.control-label(for="inputTitle") 婴儿小名
+          .col-sm-10
+            input#inputName.form-control(type="text", name="baby[name]", value=baby.name)
+        .form-group
+          label.col-sm-2.control-label(for="inputTitle") 婴儿年龄(月)
+          .col-sm-10
+            input#inputOld.form-control(type="text", name="baby[old]", value=baby.old)
+        .form-group
+          label.col-sm-2.control-label(for="inputImg") 图片地址
+          .col-sm-10
+            input#inputImg.form-control(type="text", name="baby[img]", value=baby.img)
+        .form-group
+          label.col-sm-2.control-label(for="inputSummary") 简介
+          .col-sm-10
+            textarea#inputSummary.form-control(type="text", name="baby[summary]")= baby.summary
+        .form-group
+          .col-sm-offset-2.col-sm-10
+          button#submitBabyAdd.btn.btn-default(type="submit") 录入
+          

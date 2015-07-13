@@ -21,13 +21,16 @@ block content
                             .clear
                         dl.works_view
                             dt
-                            dd 8天前
+                            dd 更新于 #{baby.meta.updateAt}
                             .clear
                         .clear
                     .clear
                     .article_ct
+                        h1 #{baby.title}
+                        p #{baby.year}
+                        p #{baby.summary}
                         p
-                            img(src='./rrr_files/1421906192522_1140x0.jpg', height='', width='', style='height: auto;')
+                            img(src='#{bady.img}')
                     .clear
             #comment
                 .comment_other

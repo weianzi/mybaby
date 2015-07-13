@@ -1,4 +1,4 @@
-extends layout
+extends layout-admin
 
 block content
     #container
@@ -7,21 +7,19 @@ block content
                 th 主题
                 th 录入时间
                 th 图片地址
-                th 视频地址
                 th 介绍
                 th 查看
                 th 编辑
 
-            each item in items
+            each item in babys
                 tr
                     td #{item.title}
-                    td #{item.createdAt}
+                    td #{item.meta.createdAt}
                     td
                         img(src="/#{item.img}")
-                    td
                     td #{item.summary}
                     td
-                        a(href="/detail/#{item._id}")查看
+                        a(href="/detail/#{item._id}") 查看
                     td
                         a(href="###") 修改
                         a(href="###") 删除

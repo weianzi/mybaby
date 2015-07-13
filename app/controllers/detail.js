@@ -1,12 +1,17 @@
-function detail(req, res) {
+var Baby = require('../models/baby');
 
-    var id = req.params.id;
+exports.detail = function(req, res) {
 
-    res.render("detail", {
-        title: "详情页"
-    });
-}
+	var id = req.params.id;
 
-module.exports = {
-    detail: detail
+	Baby.findById(id, function(err, baby) {
+
+		if (err) console.log(err);
+
+		res.render("detail", {
+			title: "详情页",
+			baby: baby
+		});
+	})
+
 };
