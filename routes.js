@@ -13,6 +13,8 @@ module.exports = function (app) {
 
     //后台管理baby信息
     app.get("/admin/baby/list", Admin.babyList); 
+    //后台删除
+    app.delete("/admin/baby/list", Admin.babyDel); 
 
     //后台录入baby信息
     app.get("/admin/baby/add", Admin.babyAdd);

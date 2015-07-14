@@ -1,4 +1,5 @@
 var _ = require("underscore");
+var moment = require("moment");
 var Baby = require("../models/baby");
 
 //后台管理列表
@@ -18,11 +19,11 @@ exports.babyAdd = function(req, res) {
 	res.render('admin-add', {
 		title: '后台录入页',
 		baby: {
-			title: "1",
-			name: "1",
-			old: "1",
-			img: "1",
-			summary: "1"
+			title: "标题1",
+			name: "婴儿小名1",
+			old: "6",
+			img: "/images/2.jpg",
+			summary: "简介：虽然我最后知道了他不是异步的......然后，前端异步用得特别多，如果不是异步的程序，你都不好意思说是自己写的NodeJs是机遇javascript做出来的"
 		}
 	});
 };
@@ -45,9 +46,18 @@ exports.babyUpdate = function(req, res) {
 //后台接收前台发送baby信息
 exports.babySave = function(req, res) {
 
-	var id = req.params._id;
-	var babyObj = req.params.baby;
-	console.log(babyObj);
+	var id = req.body._id;
+	//var babyObj = req.body.baby;
+	var babyObj = {
+		_id: id,
+		title: req.body.title,
+		name: req.body.name,
+		old: req.body.old,
+		img: req.body.img,
+		summary: req.body.summary
+	};
+
+	//console.log(babyObj);
 	var _baby;
 
 	if (id) {
@@ -57,7 +67,13 @@ exports.babySave = function(req, res) {
 			_baby = _.extend(baby, babyObj);
 			_baby.save(function(err, baby) {
 				if (err) console.log(err);
-				res.redirect("/detail/" + baby._id);
+				else {
+					console.log("Successfully saved -- " + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
+					res.json({
+						success: 1
+					});
+					res.redirect("/detail/" + baby._id);
+				}
 			});
 		});
 	} else {
@@ -70,7 +86,36 @@ exports.babySave = function(req, res) {
 		});
 		_baby.save(function(err, baby) {
 			if (err) console.log(err);
-			res.redirect("/detail/" + baby._id);
+			else {
+				console.log("Successfully saved -- " + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
+				res.json({
+					success: 1
+				});
+				res.redirect("/detail/" + baby._id);
+			}
+		});
+	};
+
+};
+
+
+//删除
+exports.babyDel = function(req, res) {
+
+	var id = req.query.id;
+
+	if (id) {
+		Baby.remove({_id: id}, function(err, baby) {
+			if (err) {
+				console.log(err);
+				res.json({
+					success: 0
+				});
+			} else {
+				res.json({
+					success: 1
+				});
+			}
 		});
 	}
 

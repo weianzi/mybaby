@@ -12,7 +12,7 @@ block content
                 th 编辑
 
             each item in babys
-                tr
+                tr(calss="item-id-#{item._id}")
                     td #{item.title}
                     td #{item.meta.createdAt}
                     td
@@ -21,5 +21,6 @@ block content
                     td
                         a(href="/detail/#{item._id}") 查看
                     td
-                        a(href="###") 修改
-                        a(href="###") 删除
+                        a(href="/admin/baby/update/#{item._id}") 修改
+                         | 
+                        a(href="javascript:;" data-id="#{item._id}" class="btn btn-danger del") 删除

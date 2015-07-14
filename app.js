@@ -4,7 +4,7 @@ var port = process.env.PORT || 3000;
 var app = express();
 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/baby");
+mongoose.connect("mongodb://localhost/ancool");
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
@@ -23,6 +23,7 @@ require("./routes")(app);
 app.set("views", "./app/views");
 app.set("view engine", "jade");
 app.use(express.static(path.join(__dirname, "public")));
+app.locals.moment = require("moment");
 app.listen(port);
 
 console.log("mybaby started on port" + port);

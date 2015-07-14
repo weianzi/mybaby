@@ -21,16 +21,17 @@ block content
                             .clear
                         dl.works_view
                             dt
-                            dd 更新于 #{baby.meta.updateAt}
+                            dd 更新于 #{moment(baby.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
                             .clear
                         .clear
                     .clear
                     .article_ct
                         h1 #{baby.title}
-                        p #{baby.year}
+                        p #{baby.name}
+                        p #{baby.old}
+                        p 
+                          img(src='#{baby.img}')
                         p #{baby.summary}
-                        p
-                            img(src='#{bady.img}')
                     .clear
             #comment
                 .comment_other
@@ -38,12 +39,12 @@ block content
                 ul
                     li(postdata='17470', usdata='20035')
                         .pd5
-                            a.avt.fl(target='_blank', href='#/preview/1/2015-01-23/UEhtml/zhengwen.html#')
-                                img(src='./rrr_files/100')
+                            a.avt.fl(target='_blank', href='#')
+                                img(src='/images/1.jpg')
                             .comment_content
                                 h5
                                     .fl
-                                        a.comment_name(href='#/preview/1/2015-01-23/UEhtml/zhengwen.html#') 爱玩
+                                        a.comment_name(href='#') 爱玩
                                         span 2天前
                                     .fr.reply_this [回复]
                                     .clear
