@@ -2,25 +2,26 @@ extends layout-admin
 
 block content
     #container
-        table(width="100%")
+        table(class="table table-hover table-bordered")
             tr
-                th 主题
-                th 录入时间
+                th(width="200") 主题
+                th(width="160") 录入时间
                 th 图片地址
                 th 介绍
-                th 查看
-                th 编辑
+                th(width="50") 查看
+                th(width="100") 编辑
 
-            each item in babys
+            each item in babies
                 tr(calss="item-id-#{item._id}")
                     td #{item.title}
-                    td #{item.meta.createdAt}
+                    td #{moment(item.meta.updateAt).format("YYYY-MM-DD hh:mm:ss")}
                     td
-                        img(src="/#{item.img}")
+                        a(href="#{item.img}" target="_blank")
+                            img(src="#{item.img}" height="50")
                     td #{item.summary}
                     td
                         a(href="/detail/#{item._id}") 查看
                     td
-                        a(href="/admin/baby/update/#{item._id}") 修改
-                         | 
-                        a(href="javascript:;" data-id="#{item._id}" class="btn btn-danger del") 删除
+                        a(href="/admin/baby/update/#{item._id}" class="btn btn-primary btn-xs") 修改
+                        | &nbsp;
+                        a(href="javascript:;" data-id="#{item._id}" class="btn btn-danger del btn-xs") 删除

@@ -5,11 +5,11 @@ var Baby = require("../models/baby");
 //后台管理列表
 exports.babyList = function(req, res) { //request要求, response响应
 
-	Baby.fetch(function(err, babys) {
+	Baby.fetch(function(err, babies) {
 		if (err) console.log(err);
 		res.render("admin-list", {
 			title: "后台管理列表",
-			babys: babys
+			babies: babies
 		});
 	});
 };
