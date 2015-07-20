@@ -112,7 +112,8 @@
         }
         return false;
     });
-    $('.search_open').bind('click', function (e) {
+    $('.search_open').on('click', function (e) {
+
         if ($('#container').hasClass('push') == false) {
             if (dd == 0) {
                 $('#container,#user,#header,#us_panel').addClass('pull');

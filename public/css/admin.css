@@ -126,6 +126,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+.hide {
+  display: none;
+}
 h1 {
   font-size: 30px;
   line-height: 70px;

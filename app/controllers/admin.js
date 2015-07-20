@@ -1,14 +1,14 @@
-var _ = require("underscore");
-var moment = require("moment");
-var Baby = require("../models/baby");
+var moment = require('moment');
+var _ = require('underscore');
+var Baby = require('../models/baby');
 
 //后台管理列表
 exports.babyList = function(req, res) { //request要求, response响应
 
 	Baby.fetch(function(err, babies) {
 		if (err) console.log(err);
-		res.render("admin-list", {
-			title: "后台管理列表",
+		res.render('admin-list', {
+			title: '后台管理列表',
 			babies: babies
 		});
 	});
@@ -19,11 +19,12 @@ exports.babyAdd = function(req, res) {
 	res.render('admin-add', {
 		title: '后台录入页',
 		baby: {
-			title: "标题1",
-			name: "婴儿小名1",
-			old: "6",
-			img: "/images/2.jpg",
-			summary: "简介：虽然我最后知道了他不是异步的......然后，前端异步用得特别多，如果不是异步的程序，你都不好意思说是自己写的NodeJs是机遇javascript做出来的"
+			_id: '',
+			title: '',
+			name: '',
+			old: '',
+			img: '',
+			summary: ''
 		}
 	});
 };
@@ -34,8 +35,8 @@ exports.babyUpdate = function(req, res) {
 	if (id) {
 		Baby.findById(id, function(err, baby) {
 			if (err) console.log(err);
-			res.render("admin-add", {
-				title: "后台更新页",
+			res.render('admin-add', {
+				title: '后台更新页',
 				baby: baby
 			});
 		});
@@ -43,7 +44,7 @@ exports.babyUpdate = function(req, res) {
 };
 
 
-//后台接收前台发送baby信息
+//接收前台录入的baby信息
 exports.babySave = function(req, res) {
 
 	var id = req.body._id;
@@ -67,15 +68,10 @@ exports.babySave = function(req, res) {
 			_baby = _.extend(baby, babyObj);
 			_baby.save(function(err, baby) {
 				if (err) console.log(err);
-				else {
-					console.log("Successfully saved -- " + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
-					res.json({
-						success: 1
-					});
-					res.redirect("/detail/" + baby._id);
-				}
-			});
-		});
+				console.log('Successfully saved -- ' + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
+				res.redirect('/detail/' + baby._id);
+			})
+		})
 	} else {
 		_baby = new Baby({
 			title: babyObj.title,
@@ -83,18 +79,13 @@ exports.babySave = function(req, res) {
 			old: babyObj.old,
 			img: babyObj.img,
 			summary: babyObj.summary
-		});
+		})
 		_baby.save(function(err, baby) {
 			if (err) console.log(err);
-			else {
-				console.log("Successfully saved -- " + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
-				res.json({
-					success: 1
-				});
-				res.redirect("/detail/" + baby._id);
-			}
-		});
-	};
+			console.log('Successfully saved -- ' + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
+			res.redirect('/detail/' + baby._id);
+		})
+	}
 
 };
 
@@ -103,20 +94,21 @@ exports.babySave = function(req, res) {
 exports.babyDel = function(req, res) {
 
 	var id = req.query.id;
-
 	if (id) {
-		Baby.remove({_id: id}, function(err, baby) {
+		Baby.remove({
+			_id: id
+		}, function(err, baby) {
 			if (err) {
 				console.log(err);
 				res.json({
 					success: 0
-				});
+				})
 			} else {
 				res.json({
 					success: 1
-				});
+				})
 			}
-		});
+		})
 	}
 
 };

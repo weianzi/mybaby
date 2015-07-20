@@ -2,9 +2,13 @@
     .wrap
         i.menu_open
         .logo
-            a(href="/")
-                //-img(src="images/logo.png")
-                span LOGO 
-                p 返回首页
+            a(href="/") 首页
+            | &nbsp;
+            a(href="/admin/baby/add") 新增
+            | &nbsp;
+            a(href="/admin/baby/list") 管理
+            | &nbsp;
+            a(href="/admin/userlist") 用户
+            p #{title}
         i.search_open
     .logo_msk

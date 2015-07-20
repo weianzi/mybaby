@@ -14,7 +14,7 @@ block content
             each item in babies
                 tr(calss="item-id-#{item._id}")
                     td #{item.title}
-                    td #{moment(item.meta.updateAt).format("YYYY-MM-DD hh:mm:ss")}
+                    td #{moment(item.meta.updateAt).format("YYYY-MM-DD HH:mm:ss")}
                     td
                         a(href="#{item.img}" target="_blank")
                             img(src="#{item.img}" height="50")
@@ -24,4 +24,4 @@ block content
                     td
                         a(href="/admin/baby/update/#{item._id}" class="btn btn-primary btn-xs") 修改
                         | &nbsp;
-                        a(href="javascript:;" data-id="#{item._id}" class="btn btn-danger del btn-xs") 删除
+                        button.btn.btn-danger.btn-xs.del-baby(data-id="#{item._id}") 删除

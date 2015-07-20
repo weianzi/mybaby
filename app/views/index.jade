@@ -16,7 +16,8 @@ block content
                                         h5
                                             | by
                                             span #{item.username}
-                                            em (#{moment(item.meta.updateAt).format("YYYY-MM-DD HH:MM:SS")})
+                                            em (#{moment(item.meta.updateAt).format("YYYY-MM-DD HH:mm:ss")})
+                                            p #{item.summary}
                                         .list_info_i
                                             dl.list_info_views
                                                 dt

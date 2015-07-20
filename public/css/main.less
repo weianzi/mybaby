@@ -172,13 +172,13 @@ i {
 
 .logo {
   position: relative;
-  width: 137px;
+  width: 240px;
   height: 42px;
-  margin: 9px auto
+  margin: 9px auto;
+  text-align: center;
 }
-
-.logo a {
-  display: block
+.logo a{
+  color: #fff!important;
 }
 
 .logo img {
@@ -392,12 +392,21 @@ i {
   line-height: 18px;
   font-weight: 500;
   font-size: 12px;
-  color: #a2a2a2
+  color: #a2a2a2;
+  p{
+    height: 20px;
+    //width: 200px;
+    overflow: hidden;
+    //word-break:break-all;
+    //word-wrap:break-word;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
 }
 
 .list_info span {
   margin-left: 5px;
-  color: #777777
+  color: #777
 }
 
 .list_info h5 em {
@@ -1605,8 +1614,8 @@ i.sort_com {
   height: 16px;
   width: 16px;
   display: inline-block;
-  background: url('../images/icons.png') no-repeat -288px -16px;
-  background-size: 500px 500px;
+  //background: url('../images/icons.png') no-repeat -288px -16px;
+  //background-size: 500px 500px;
   margin-right: 10px;
   vertical-align: middle;
   -webkit-animation: loading 1s infinite linear;
@@ -3296,8 +3305,8 @@ i.sort_com {
 .loading_mask {
   width: 80px;
   height: 120px;
-  background: url('loading.png') no-repeat 50% 0;
-  background-size: 77px 97px;
+  //background: url('loading.png') no-repeat 50% 0;
+  //background-size: 77px 97px;
   position: absolute;
   top: 50%;
   left: 50%;

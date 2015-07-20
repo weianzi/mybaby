@@ -4,13 +4,24 @@ var port = process.env.PORT || 3000;
 var app = express();
 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/ancool");
+var mongoStore = require("connect-mongo")(express);
+var dbUrl = "mongodb://localhost/ancool";
+mongoose.connect(dbUrl);
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(bodyParser.json());
+
+app.use(express.cookieParser());
+app.use(express.session({
+	secret: "ancool",
+	store: new mongoStore({
+		url: dbUrl,
+		collection:"sesstions"
+	})
+}));
 
 if("development" === app.get("env")){
 	app.set("showStackError", true);

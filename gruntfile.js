@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         }
       },
       js: {
-        files: ['public/js/**', 'models/**/*.js', 'schemas/**/*.js'],
+        files: ['public/js/*.js', 'app/**/*.js'],
         //tasks: ['jshint'],
         options: {
           livereload: true
@@ -34,9 +34,9 @@ module.exports = function(grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        ignores: ['public/libs/**/*.js']
+        ignores: ['public/libs/*.js', 'public/js/main.js']
       },
-      all: ['public/js/*.js', 'test/**/*.js', 'app/**/*.js']
+      all: ['public/js/*.js', 'app/**/*.js']
     },
 
     less: {
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
           optimization: 2
         },
         files: {
-          'public/build/index.css': 'public/less/main.less'
+          'public/build/main.css': 'public/main.less'
         }
       }
     },
@@ -56,9 +56,7 @@ module.exports = function(grunt) {
       development: {
         files: {
           'public/build/admin.min.js': 'public/js/admin.js',
-          'public/build/detail.min.js': [
-            'public/js/detail.js'
-          ]
+          'public/build/sign.min.js': 'public/js/sign.js'
         }
       }
     },

@@ -7,12 +7,10 @@ exports.detail = function(req, res) {
 	Baby.findById(id, function(err, baby) {
 
 		if (err) console.log(err);
-		else {
-			res.render("detail", {
-				title: "详情页",
-				baby: baby
-			});
-		}
+		res.render('detail', {
+			title: '详情页',
+			baby: baby
+		})
 	})
 
 };
