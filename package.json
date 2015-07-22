@@ -1,17 +1,18 @@
 {
   "name": "mybaby",
   "version": "0.0.1",
-  "description": "everyone can show your baby here",
+  "description": "Everyone can show your baby here!",
   "main": "app.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
     "async": "~0.2.10",
-    "bcryptjs": "^2.2.0",
+    "bcryptjs": "~2.2.0",
+    "body-parser": "~1.13.2",
     "connect-mongo": "~0.3.3",
     "crypto": "~0.0.3",
-    "express": "^4.0.0",
+    "express": "~3.4.8",
     "grunt": "~0.4.5",
     "grunt-concurrent": "~0.4.3",
     "grunt-contrib-jshint": "~0.10.0",

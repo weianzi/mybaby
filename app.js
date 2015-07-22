@@ -1,6 +1,6 @@
 var express = require("express");
 var path = require("path");
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 var app = express();
 
 var mongoose = require("mongoose");
