@@ -3,8 +3,12 @@ var path = require("path");
 var port = process.env.PORT || 80;
 var app = express();
 
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
+var serveStatic = require("serve-static");
+
 var mongoose = require("mongoose");
-var mongoStore = require("connect-mongo")(express);
+var mongoStore = require("connect-mongo")(session);
 var dbUrl = "mongodb://localhost/ancool";
 mongoose.connect(dbUrl);
 
@@ -14,8 +18,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.use(express.cookieParser());
-app.use(express.session({
+app.use(cookieParser());
+app.use(session({
+	resave: false,  
+    saveUninitialized: true, 
 	secret: "ancool",
 	store: new mongoStore({
 		url: dbUrl,
@@ -33,7 +39,7 @@ require("./routes")(app);
 
 app.set("views", "./app/views");
 app.set("view engine", "jade");
-app.use(express.static(path.join(__dirname, "public")));
+app.use(serveStatic(path.join(__dirname, "public")));
 app.locals.moment = require("moment");
 app.listen(port);
 
