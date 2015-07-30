@@ -10,8 +10,8 @@ var mongoStore = require("connect-mongo")(session);
 var dbUrl = "mongodb://localhost/ancool";
 var bodyParser = require("body-parser");
 
-app.set("view engine", "jade");
 app.set("views", "./app/views");
+app.set("view engine", "jade");
 app.use(serveStatic(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
