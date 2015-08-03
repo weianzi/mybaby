@@ -13,16 +13,21 @@ exports.signup = function(req, res) {
 		if (err) console.log(err);
 
 		if (user) {
+			res.json({success: 0});
 			console.log('该用户名已被注册');
 		} else {
 			user = new User(_user);
 			user.save(function(err, user) {
-				if (err) console.log(err);
+				if (err) {
+					console.log(err);
+					return;
+				};
 				req.session.user = user;
-				res.redirect('/');
+				//res.redirect('/');
+				res.json({success: 1});
+				console.log('注册成功');
 			});
 
-			console.log('注册成功');
 		}
 	})
 
@@ -39,15 +44,22 @@ exports.signin = function(req, res) {
 		name: _user.name
 	}, function(err, user) {
 		if (err) console.log(err);
-
 		if (!user) {
-			console.log('该用户名没注册过');
+			console.log('用户名不存在');
+			res.json({success: -1});
 		} else {
-			req.session.user = user;
-			console.log(user.name + '登录成功');
+			user.comparePassword(_user.password, function (err, isMatch) {
+				if(err) console.log(err);
+				if(isMatch){
+					req.session.user = user;
+					console.log(user.name + '登录成功');
+					res.json({success: 1});
+				} else {
+					console.log('密码错误');
+					res.json({success: 0});
+				}
+			})
 		}
-		
-		res.redirect('/');
 	})
 
 };

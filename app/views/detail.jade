@@ -35,53 +35,67 @@ block content
                     .clear
             #comment
                 .comment_other
-                    h4 全部评论: 5条
+                    h4 全部评论: #{comments.length}条
                 ul
-                    li(postdata='17470', usdata='20035')
-                        .pd5
-                            a.avt.fl(target='_blank', href='#')
-                                img(src='/images/1.jpg')
-                            .comment_content
-                                h5
-                                    .fl
-                                        a.comment_name(href='#') 爱玩
-                                        span 2天前
-                                    .fr.reply_this [回复]
-                                    .clear
-                                .comment_p
-                                    .comment_pct 太赞了
-                            .clear
-                            .comment_reply
-                .pd5
-#us_panel2
-    table(width='100%', height='100%', cellspacing='0', border='0')
-        tbody
-            tr
-                td.us_panel_like
-                    i
-                    span
-                        | 喜欢(
-                        em 8
-                        | )
-                td.us_panel_menu
-                    .arrow_top
-                    i
-                    .us_panel_menu_left
-                    .us_panel_menu_right
-                td.us_panel_post
-                    i
-                    span
-                        | 评论(
-                        em 5
-                        | )
-#add_newpost
-    .add_newpost
-        table(width='100%', height='100%', cellspacing='5')
-            tbody
-                tr
-                    td.add_newpost_cancel 取消
-                    td.add_newpost_post 评论
-    .newpost_w
-        .pd10
-            .newpost_w_t
-                textarea
+                    each item in comments
+                        li
+                            .pd5
+                                a.avt.fl(target='_blank', href='###')
+                                    img(src='/images/1.jpg')
+                                .comment_content
+                                    h5
+                                        .fl
+                                            a.comment_name #{item.from.name}
+                                            span #{moment(item.meta.createAt).format('YYYY-MM-DD HH:mm:ss')}
+                                        a.fr.reply_this(href='#commentSubmit', data-cid='#{item._id}', data-tid='#{item.from._id}') [回复]
+                                        .clear
+                                    .comment_p
+                                        .comment_pct #{item.content}
+                                    if item.reply && item.reply.length > 0
+                                        each reply in item.reply
+                                            p #{reply.from.name} 回复 #{reply.to.name}：#{reply.content} 
+                                                span.grey (#{moment(reply.createAt).format('YYYY-MM-DD HH:mm:ss')})
+                                .clear
+                #commentSubmit.comment_submit
+                    input#commentBaby(type='hidden' value='#{baby._id}')
+                    if user
+                        input#commentFrom(type='hidden' value='#{user._id}')
+                    textarea#commentContent
+                    if user
+                        button 提交
+                    else 
+                        span 请登录后评论
+                //-.pd5
+    script(src='/js/comment.js')
+//- #us_panel2
+//-     table(width='100%', height='100%', cellspacing='0', border='0')
+//-         tbody
+//-             tr
+//-                 td.us_panel_like
+//-                     i
+//-                     span
+//-                         | 喜欢(
+//-                         em 8
+//-                         | )
+//-                 td.us_panel_menu
+//-                     .arrow_top
+//-                     i
+//-                     .us_panel_menu_left
+//-                     .us_panel_menu_right
+//-                 td.us_panel_post
+//-                     i
+//-                     span
+//-                         | 评论(
+//-                         em 5
+//-                         | )
+//- #add_newpost
+//-     .add_newpost
+//-         table(width='100%', height='100%', cellspacing='5')
+//-             tbody
+//-                 tr
+//-                     td.add_newpost_cancel 取消
+//-                     td.add_newpost_post 评论
+//-     .newpost_w
+//-         .pd10
+//-             .newpost_w_t
+//-                 textarea

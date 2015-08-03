@@ -2,6 +2,7 @@ var Index = require("./app/controllers/index");
 var Detail = require("./app/controllers/detail");
 var Admin = require("./app/controllers/admin");
 var User = require("./app/controllers/user");
+var Comment = require("./app/controllers/comment");
 
 module.exports = function(app) {
 
@@ -25,7 +26,7 @@ module.exports = function(app) {
     //后台修改baby信息
     app.get("/admin/baby/update/:id", User.signinRequired, User.adminRequired, Admin.babyUpdate);
     //后台接收前台发送baby信息
-    app.post("/admin/baby/save", User.signinRequired, User.adminRequired, Admin.babySave);
+    app.post("/admin/baby/save", User.signinRequired, User.adminRequired, Admin.saveImg, Admin.babySave);
 
     //用户
     app.post("/user/signup", User.signup);
@@ -34,4 +35,6 @@ module.exports = function(app) {
     app.get("/admin/userlist", User.signinRequired, User.adminRequired, User.list);
     app.delete("/admin/userlist", User.signinRequired, User.adminRequired, User.del);
 
+    //评论
+    app.post('/user/comment', User.signinRequired, Comment.Save);
 };

@@ -22,6 +22,10 @@ block content
           .col-sm-10
             input#inputImg.form-control(type="text", name="baby[img]", value=baby.img)
         .form-group
+          label.col-sm-2.control-label(for="inputImg") 上传图片
+          .col-sm-10
+            input#uploadImg(type="file", name="uploadImg")
+        .form-group
           label.col-sm-2.control-label(for="inputSummary") 简介
           .col-sm-10
             textarea#inputSummary.form-control(type="text", name="baby[summary]")= baby.summary

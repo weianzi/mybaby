@@ -43,6 +43,15 @@ exports.babyUpdate = function(req, res) {
 	}
 };
 
+//接收上传的图片
+exports.saveImg = function(req, res, next) {
+	//var imgData = req.files.uploadImg;
+	var posterData = req.body.uploadImg;
+	var filePath = posterData.path;
+	var originalFilename = posterData.originalFilename;
+	console.log(posterData);
+	next();
+}
 
 //接收前台录入的baby信息
 exports.babySave = function(req, res) {
@@ -69,7 +78,10 @@ exports.babySave = function(req, res) {
 			_baby.save(function(err, baby) {
 				if (err) console.log(err);
 				console.log('Successfully saved -- ' + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
-				res.redirect('/detail/' + baby._id);
+				//res.redirect('/detail/' + baby._id);
+				res.json({
+					success: 1
+				});
 			})
 		})
 	} else {
@@ -83,7 +95,10 @@ exports.babySave = function(req, res) {
 		_baby.save(function(err, baby) {
 			if (err) console.log(err);
 			console.log('Successfully saved -- ' + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
-			res.redirect('/detail/' + baby._id);
+			//res.redirect('/detail/' + baby._id);
+			res.json({
+				success: 1
+			});
 		})
 	}
 

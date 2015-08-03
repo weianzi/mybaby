@@ -1,6 +1,5 @@
 $(function() {
 
-
 	$('.search_open').on('click', function(e) {
 		if ($('#container').hasClass('pull')) {
 			$('#container,#user,#header').removeClass('pull');
@@ -30,6 +29,11 @@ $(function() {
 			signupPassword: $('#signupPassword').val()
 		};
 
+		if(!user.signupName || !user.signupPassword){
+			alert('用户或密码不能为空');
+			return;
+		}
+
 		$.ajax({
 			type: 'POST',
 			url: '/user/signup',
@@ -38,6 +42,8 @@ $(function() {
 				if(results.success === 1){
 					console.log('注册成功');
 					window.location.reload();
+				} else if(results.success === 0) {
+					alert("该用户名已被注册")
 				}
 			}
 		})
@@ -61,6 +67,10 @@ $(function() {
 				if(results.success === 1){
 					console.log('登录成功');
 					window.location.reload();
+				} else if(results.success === -1) {
+					alert("用户名不存在");
+				} else{
+					alert("密码错误");
 				}
 			}
 		})

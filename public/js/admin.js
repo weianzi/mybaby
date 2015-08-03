@@ -3,26 +3,28 @@ $(function() {
 	//录入 对应页面admin-add.jade
 	$('#submitBabyAdd').click(function() {
 
+		var oFormData = new FormData();
+		oFormData.append('file', $('#uploadImg')[0].files[0]);
+
 		var baby = {
 			_id: $('#babyId').val(),
 			title: $('#inputTitle').val(),
 			name: $('#inputName').val(),
 			old: $('#inputOld').val(),
 			img: $('#inputImg').val(),
+			uploadImg: oFormData,
 			summary: $('#inputSummary').val()
 		}
-
+		//console.log(baby);
 		$.ajax({
 			type: 'POST',
 			url: '/admin/baby/save',
 			data: baby,
 			success: function(results) {
-				if (results.scccess === 1) {
-					console.log('success');
-					window.location.reload();
+				if (results.success === 1) {
+					alert('录入成功');
 				}
-			},
-			error: function() {}
+			}
 		})
 
 	});
@@ -74,7 +76,6 @@ $(function() {
 				console.error(status, err.toString());
 			}
 		})
-
-	});
+	})
 
 })
