@@ -3,7 +3,8 @@ var Detail = require("./app/controllers/detail");
 var Admin = require("./app/controllers/admin");
 var User = require("./app/controllers/user");
 var Comment = require("./app/controllers/comment");
-
+var multipart = require("connect-multiparty");
+var multipartMiddleware = multipart();
 module.exports = function(app) {
 
     app.use(function(req, res, next) {
@@ -26,7 +27,7 @@ module.exports = function(app) {
     //后台修改baby信息
     app.get("/admin/baby/update/:id", User.signinRequired, User.adminRequired, Admin.babyUpdate);
     //后台接收前台发送baby信息
-    app.post("/admin/baby/save", User.signinRequired, User.adminRequired, Admin.saveImg, Admin.babySave);
+    app.post("/admin/baby/save", multipartMiddleware, User.signinRequired, User.adminRequired, Admin.saveImg, Admin.babySave);
 
     //用户
     app.post("/user/signup", User.signup);

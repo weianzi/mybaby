@@ -4,6 +4,7 @@ var Schema = mongoose.Schema
 var BabySchema = new Schema({
   title: String,
   img: String,
+  uploadImg: String,
   summary: String,
   name: String,
   old: Number,

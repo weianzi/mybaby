@@ -16,8 +16,12 @@ block content
                     td #{item.title}
                     td #{moment(item.meta.updateAt).format("YYYY-MM-DD HH:mm:ss")}
                     td
-                        a(href="#{item.img}" target="_blank")
-                            img(src="#{item.img}" height="50")
+                        if item.img
+                            a(href="#{item.img}" target="_blank")
+                                img(src="#{item.img}" height="50")
+                        else 
+                            a(href="/upload/#{item.uploadImg}" target="_blank")
+                                img(src="/upload/#{item.uploadImg}" height="50")
                     td #{item.summary}
                     td
                         a(href="/detail/#{item._id}") 查看

@@ -1,6 +1,8 @@
 var moment = require('moment');
 var _ = require('underscore');
 var Baby = require('../models/baby');
+var fs = require('fs')
+var path = require('path')
 
 //后台管理列表
 exports.babyList = function(req, res) { //request要求, response响应
@@ -45,26 +47,39 @@ exports.babyUpdate = function(req, res) {
 
 //接收上传的图片
 exports.saveImg = function(req, res, next) {
-	//var imgData = req.files.uploadImg;
-	var posterData = req.body.uploadImg;
-	var filePath = posterData.path;
-	var originalFilename = posterData.originalFilename;
-	console.log(posterData);
-	next();
+	var imgData = req.files.uploadImg;
+	var filePath = imgData.path;
+	var originalFilename = imgData.originalFilename;
+	if (originalFilename) {
+    fs.readFile(filePath, function(err, data) {
+      var timestamp = Date.now()
+      var type = imgData.type.split('/')[1]
+      var uploadImg = timestamp + '.' + type
+      var newPath = path.join(__dirname, '../../', '/public/upload/' + uploadImg)
+
+      fs.writeFile(newPath, data, function(err) {
+        req.uploadImg = uploadImg
+        next()
+      })
+    })
+  }
+  else {
+    next()
+  }
 }
 
 //接收前台录入的baby信息
 exports.babySave = function(req, res) {
-
-	var id = req.body._id;
-	//var babyObj = req.body.baby;
+	var babyData = req.body.baby;
+	var id = babyData._id;
 	var babyObj = {
 		_id: id,
-		title: req.body.title,
-		name: req.body.name,
-		old: req.body.old,
-		img: req.body.img,
-		summary: req.body.summary
+		title: babyData.title,
+		name: babyData.name,
+		old: babyData.old,
+		img: babyData.img,
+		uploadImg: req.uploadImg,
+		summary: babyData.summary
 	};
 
 	//console.log(babyObj);
@@ -79,9 +94,9 @@ exports.babySave = function(req, res) {
 				if (err) console.log(err);
 				console.log('Successfully saved -- ' + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
 				//res.redirect('/detail/' + baby._id);
-				res.json({
-					success: 1
-				});
+				// res.json({
+				// 	success: 1
+				// });
 			})
 		})
 	} else {
@@ -90,15 +105,16 @@ exports.babySave = function(req, res) {
 			name: babyObj.name,
 			old: babyObj.old,
 			img: babyObj.img,
+			uploadImg: babyObj.uploadImg,
 			summary: babyObj.summary
 		})
 		_baby.save(function(err, baby) {
 			if (err) console.log(err);
 			console.log('Successfully saved -- ' + moment(baby.meta.createAt).format('YYYY-MM-DD HH:mm:ss'));
 			//res.redirect('/detail/' + baby._id);
-			res.json({
-				success: 1
-			});
+			// res.json({
+			// 	success: 1
+			// });
 		})
 	}
 

@@ -2,10 +2,10 @@ var express = require("express");
 var path = require("path");
 var port = process.env.PORT || 8080;
 var app = express();
-
-var cookieParser = require("cookie-parser")
-var session = require("express-session")
-var serveStatic = require("serve-static")
+var fs = require("fs");
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
+var serveStatic = require("serve-static");
 
 var mongoose = require("mongoose");
 var mongoStore = require("connect-mongo")(session);

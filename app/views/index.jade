@@ -10,7 +10,10 @@ block content
                             .wrap
                                 a.alist(href='/detail/#{item._id}')
                                     .list_litpic.fl
-                                        img(src='#{item.img}')
+                                        if item.img
+                                            img(src='#{item.img}')
+                                        else 
+                                            img(src='/upload/#{item.uploadImg}')
                                     .list_info
                                         h4 #{item.title}
                                         h5

@@ -30,7 +30,10 @@ block content
                         p #{baby.name}
                         p #{baby.old}
                         p 
-                          img(src='#{baby.img}')
+                          if baby.img
+                            img(src='#{baby.img}')
+                          else 
+                            img(src='/upload/#{baby.uploadImg}')
                         p #{baby.summary}
                     .clear
             #comment

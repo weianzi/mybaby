@@ -3,7 +3,7 @@ extends layout-admin
 block content
   #container.container
     .row
-        
+      form(method="post", action="/admin/baby/save", enctype="multipart/form-data")  
         input(type="hidden", id="babyId" name="baby[_id]", value=baby._id)
         .form-group
           label.col-sm-2.control-label(for="inputTitle") 标题
