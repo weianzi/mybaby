@@ -35,6 +35,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node app",
     "test": "grunt test"
   },
   "repository": {
